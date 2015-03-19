@@ -10,10 +10,10 @@ Get the gem into either your gemspec or your Gemfile, depending on how you manag
 
 ```ruby
 # gemspec
-gem.add_development_dependency 'combustion', '~> 0.5.2'
+gem.add_development_dependency 'combustion', '~> 0.5.3'
 
 # Gemfile
-gem 'combustion', '~> 0.5.2', :group => :test
+gem 'combustion', '~> 0.5.3', :group => :test
 ```
 
 In your `spec_helper.rb`, get Combustion to set itself up - which has to happen before you introduce `rspec/rails` and - if being used - `capybara/rails`. Here's an example within context:
@@ -172,7 +172,9 @@ end
 
 ## Compatibility
 
-Developed for Rails 3.1 and Ruby 1.9. It should work on any other Ruby, and possibly Rails 3.0, but will not work neatly with earlier versions of Rails.
+Developed for Rails 3.1 or better (including Rails 4) and Ruby 1.9 or better. It should work on any other Ruby, and possibly Rails 3.0, but will not work neatly with earlier versions of Rails.
+
+You can also use Combustion with multiple versions of Rails to test compatibility across them. [Appraisal](https://github.com/thoughtbot/appraisal) is a gem that can help with this, and a good starting reference is the [Thinking Sphinx](https://github.com/pat/thinking-sphinx) test suite, which runs against [multiple versions](https://github.com/pat/thinking-sphinx/blob/master/Appraisals) of Rails.
 
 ## Limitations and Known Issues
 
