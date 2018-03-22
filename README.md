@@ -10,25 +10,27 @@ Get the gem into either your gemspec or your Gemfile, depending on how you manag
 
 ```ruby
 # gemspec
-gem.add_development_dependency 'combustion', '~> 0.5.3'
+gem.add_development_dependency 'combustion', '~> 0.8.0'
 
 # Gemfile
-gem 'combustion', '~> 0.5.3', :group => :test
+gem 'combustion', '~> 0.8.0', :group => :test
 ```
 
 In your `spec_helper.rb`, get Combustion to set itself up - which has to happen before you introduce `rspec/rails` and - if being used - `capybara/rails`. Here's an example within context:
 
 ```ruby
-require 'rubygems'
-require 'bundler/setup'
+require 'bundler'
 
-require 'combustion'
-require 'capybara/rspec'
+Bundler.require :default, :development
 
+# If you're using all parts of Rails:
 Combustion.initialize! :all
+# Or, load just what you need:
+# Combustion.initialize! :active_record, :action_controller
 
 require 'rspec/rails'
-require 'capybara/rails'
+# If you're using Capybara:
+# require 'capybara/rails'
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
@@ -44,6 +46,7 @@ combust
 bundle exec combust
 ```
 
+Minitest support is considered to be experimental, but it's certainly working [for some](https://github.com/pat/combustion/issues/78). Comments on others' experiences are welcome!
 
 What Combustion is doing is setting up a Rails application at `spec/internal` - but you only need to add the files within that directory that you're going to use. Read on for some detail about what that involves.
 
@@ -172,25 +175,27 @@ end
 
 ## Compatibility
 
-Developed for Rails 3.1 or better (including Rails 4) and Ruby 1.9 or better. It should work on any other Ruby, and possibly Rails 3.0, but will not work neatly with earlier versions of Rails.
+The current test matrix covers MRI 2.2 to 2.4, and Rails 3.1 to 5.0. It will possibly work on older versions and other Ruby implementations as well.
 
 You can also use Combustion with multiple versions of Rails to test compatibility across them. [Appraisal](https://github.com/thoughtbot/appraisal) is a gem that can help with this, and a good starting reference is the [Thinking Sphinx](https://github.com/pat/thinking-sphinx) test suite, which runs against [multiple versions](https://github.com/pat/thinking-sphinx/blob/master/Appraisals) of Rails.
 
 ## Limitations and Known Issues
 
-Combustion is currently written with the expectation it'll be used with RSpec. I'd love to make this more flexible - if you want to give it a shot before I get around to it, patches are very much welcome.
+Combustion is currently written with the expectation it'll be used with RSpec, but others have got it working with [Minitest](https://github.com/pat/combustion/issues/78). I'd love to make this more flexible - if you want to give it a shot before I get around to it, patches are very much welcome.
 
 I've not tried using this with Cucumber, but it should work in theory without too much hassle. Let me know if I'm wrong!
 
 ## Contributing
+
+Please note that this project now has a [Contributor Code of Conduct](http://contributor-covenant.org/version/1/0/0/). By participating in this project you agree to abide by its terms.
 
 Contributions are very much welcome - but keep in mind the following:
 
 * Keep patches in a separate branch
 * Don't mess with the version or history file. I'll take care of that when the patch is merged in.
 
-There are no tests - partly because Combustion was extracted out from the tests of HyperTiny's Dobro, and partly because there's not much code. Still, if you can find a clean way of testing this, that'd be fantastic.
+The tests are extremely minimal, and patches to extend the suite are especially welcome.
 
 ## Credits
 
-Copyright (c) 2011, Combustion is developed and maintained by Pat Allan, and is released under the open MIT Licence. Many thanks to HyperTiny for encouraging its development, and [all who have contributed patches](https://github.com/pat/combustion/contributors).
+Copyright (c) 2011-2017, Combustion is developed and maintained by Pat Allan, and is released under the open MIT Licence. Many thanks to HyperTiny for encouraging its development, and [all who have contributed patches](https://github.com/pat/combustion/contributors).

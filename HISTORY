@@ -1,3 +1,27 @@
+0.8.0 - February 1st 2018
+* Rails 5.2.0 support.
+* Requiring digest from std-lib directly.
+* Refactoring for cleaner code.
+
+0.7.0 - June 20th 2017
+* Confirm support for MRI frozen string literals.
+* Hide migration output (Michael Grosser).
+
+0.6.0 - March 28th 2017
+* Optionally disable database reset, schema loading, migrations (Sergey Kucher).
+* Allow for multiple test databases (Semyon Pupkov).
+
+0.5.5 - July 23rd 2016
+* Add PostGIS support (Roland Koch).
+* MySQL parameter fix (Mathieu Leduc-Hamel).
+
+0.5.4 - January 12th 2016
+* Remove silent_stream call for Rails 5.0 compatability (Bryan Ricker).
+* Fix duplicate migrations error (Semyon Pupkov).
+
+0.5.3 - March 1st 2015
+* Use migrations from dependent gems (Korotaev Danil, Меркушин Михаил).
+
 0.5.2 - July 18th 2014
 * Note MIT licence in gemspec (@ktdreyer).
 * Use local create/drop methods when resetting database (Bryan Ricker).
